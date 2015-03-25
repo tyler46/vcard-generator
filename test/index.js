@@ -29,6 +29,14 @@ var contact = {
     {number: '2432 543', type: 'iphone'},
     {number: '24532 535', type: 'home'}
   ],
+  address: {
+    type: 'home',
+    primary: true,
+    streetAddress: ['1 Madison Square', '5th Ave'],
+    city: 'New York',
+    postalCode: 'WC2N',
+    country: 'U.S.A'
+  },
   'social-profiles': [
     {
       service: 'twitter', address: 'http://twitter.com/blackmamba'
