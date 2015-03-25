@@ -1,4 +1,5 @@
 var moment = require('moment');
+var uuid = require('node-uuid');
 var _ = require('lodash');
 
 var filters = require('./filters');
@@ -29,6 +30,7 @@ module.exports = function (contact) {
   });
   
   card += 'REV:' + moment().format() + nwline();
+  card += 'UID:' + uuid.v1().toUpperCase() + nwline();
   card += 'END:VCARD' + nwline();
 
   return card;
