@@ -1,0 +1,28 @@
+{
+  "name": "vcard-generator",
+  "version": "0.0.1",
+  "description": "Library to create vcards from JS(ON) objects.",
+  "main": "src/card.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "homepage": "https://github.com/tyler46/vcard-generator",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tyler46/vcard-generator.git"
+  },
+  "dependencies": {
+    "lodash": "^3.5.0",
+    "moment": "^2.9.0",
+    "require-directory": "^2.1.0",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "vcard",
+    "node.js",
+    "vcf"
+  ],
+  "author": "Spyros Markopoulos",
+  "license": "MIT"
+}
