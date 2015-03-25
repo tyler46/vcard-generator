@@ -1,6 +1,5 @@
 var _ = require('lodash');
 
-
 function encode(val) {
   if (val) {
     return val.replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
@@ -10,7 +9,9 @@ function encode(val) {
 
 
 exports.visit = function (obj) {
-  if (!_.isUndefined(obj.nickname)) {
-    return 'NICKNAME:' + encode(obj.nickname);
+  if (!_.isUndefined(obj.title)) {
+    // TITLE appears when editing the job title field on a contact
+    return 'TITLE:' + encode(obj.title);
   }
 };
+
