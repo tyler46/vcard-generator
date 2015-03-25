@@ -4,7 +4,6 @@ var _ = require('lodash');
 var filters = require('./filters');
 
 
-
 function nwline() {
   return '\r\n';
 }
@@ -19,7 +18,13 @@ module.exports = function (contact) {
   _.forOwn(filters, function (filter) {
     var part = filter.visit(contact);
     if (!_.isEmpty(part)) {
-      card += part + nwline();
+      if (_.isArray(part)) {
+        part.map(function (item) {
+          card += item + nwline();
+        });
+      } else {
+        card += part + nwline();
+      }
     }
   });
   
@@ -28,4 +33,3 @@ module.exports = function (contact) {
 
   return card;
 };
-
