@@ -24,7 +24,7 @@ exports.visit = function (obj) {
         var streets = _.reduce(obj.address.streetAddress, function (res, val) {
           console.log('res: ', res);
           console.log('val: ', val);
-          res = res + '\n' + encode(val);
+          res = res + encode('\n' + val);
           return res;
         });
         console.log('streets: ', streets);
