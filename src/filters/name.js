@@ -22,7 +22,7 @@ exports.visit = function (obj) {
     });
 
     var partsAsString = _.reduce(parts, function (res, val, key) {
-      res = res + ',' + val;
+      res = res + ';' + val;
       return res;
     });
     return 'N:' + partsAsString;
