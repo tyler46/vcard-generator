@@ -12,9 +12,9 @@ exports.visit = function (obj) {
   if (!_.isUndefined(obj.address)) {
     var addr = {};
     addr.type = (!_.isUndefined(obj.address.type)) ? 'type=' + obj.address.type.toUpperCase() + ';' : '';
-    addr.primary = (!_.isUndefined(obj.address.primary)) ? 'type=pref;' : '';
+    addr.primary = (!_.isUndefined(obj.address.primary)) ? 'type=pref' : '';
 
-    addr.postOfficeBox = (!_.isUndefined(obj.address.postOfficeBox)) ? encode(obj.address.postOfficeBox) + ';' : ';';
+    addr.postOfficeBox = (!_.isUndefined(obj.address.postOfficeBox)) ? ':' + encode(obj.address.postOfficeBox) + ';' : ':;';
     addr.extendedAddress = (!_.isUndefined(obj.address.extendedAddress)) ? encode(obj.address.extendedAddress) + ';' : ';';
 
     if (!_.isUndefined(obj.address.streetAddress)) {

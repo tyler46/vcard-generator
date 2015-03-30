@@ -15,12 +15,12 @@ var contact = {
   photo: 'http://www.example.com/dir_photos/my_photo.png',
   email: [
     {
-      address: 'kobe@la.com',
+      address: 'john@la.com',
       type: 'home',
       primary: true
     },
     {
-      address: 'kobe@nba.com',
+      address: 'john@nba.com',
       type: 'work'
     }
   ],
@@ -39,22 +39,22 @@ var contact = {
   },
   'social-profiles': [
     {
-      service: 'twitter', address: 'http://twitter.com/blackmamba'
+      service: 'twitter', address: 'http://twitter.com/johnsmith'
     },
     {
-      service: 'flickr', address: 'http://www.flickr.com/photos/kobetakingpics'
+      service: 'flickr', address: 'http://www.flickr.com/photos/johntakingpics'
     },
     {
-      service: 'linkedin', address: 'http://www.linkedin.com/in/kobejob'
+      service: 'linkedin', address: 'http://www.linkedin.com/in/johnjob'
     },
     {
-      service: 'myspace', address: 'http://www.myspace.com/kobemusic'
+      service: 'myspace', address: 'http://www.myspace.com/johnmusic'
     },
     {
       service: 'weibo', address: 'http://weibo.com/n/kobweib'
     },
     {
-      service: 'facebook', address: 'http://www.facebook.com/kobefb'
+      service: 'facebook', address: 'http://www.facebook.com/johnfb'
     }
   ]
 };
