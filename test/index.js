@@ -11,6 +11,7 @@ var contact = {
     name: 'Lakers',
     department: 'Basketball Team'
   },
+  birthday: 'Sat Oct 15 2011 00:00:00 GMT+0300 (EEST)',
   url: {address: 'http://johnsmith.com', primary: true},
   title: 'Basketball Player',
   photo: 'http://www.example.com/dir_photos/my_photo.png',
@@ -23,6 +24,9 @@ var contact = {
     {
       address: 'john@nba.com',
       type: 'work'
+    },
+    {
+      address: 'john@smith.com'
     }
   ],
   phone: [
