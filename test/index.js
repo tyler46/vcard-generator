@@ -24,6 +24,9 @@ var contact = {
     {
       address: 'kobe@nba.com',
       type: 'work'
+    },
+    {
+      address: 'john@smith.com'
     }
   ],
   phone: [
