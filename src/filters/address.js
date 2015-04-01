@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var lookup = require('country-data').lookup;
 
 function encode(val) {
   if (val) {
@@ -8,39 +9,61 @@ function encode(val) {
 }
 
 
-exports.visit = function (obj) {
+exports.visit = function (obj, num) {
+  var fp;
+  var sp;
+  var nxt;
+  var countryCode;
+  console.log('Until now items appearing: ', num);
+
   if (!_.isUndefined(obj.address)) {
-    var addr = {};
-    addr.type = (!_.isUndefined(obj.address.type)) ? 'type=' + obj.address.type.toUpperCase() + ';' : '';
-    addr.primary = (!_.isUndefined(obj.address.primary)) ? 'type=pref;' : '';
+    var address;
+    address = obj.address.map(function(ad, rank) {
+      var addr = {};
+      addr.type = (!_.isUndefined(ad.type)) ? 'type=' + ad.type.toUpperCase() + ';' : '';
+      addr.primary = (!_.isUndefined(ad.primary)) ? 'type=pref;' : '';
 
-    addr.postOfficeBox = (!_.isUndefined(obj.address.postOfficeBox)) ? encode(obj.address.postOfficeBox) + ';' : ';';
-    addr.extendedAddress = (!_.isUndefined(obj.address.extendedAddress)) ? encode(obj.address.extendedAddress) + ';' : ';';
+      addr.postOfficeBox = (!_.isUndefined(ad.postOfficeBox)) ? encode(ad.postOfficeBox) + ';' : ';';
+      addr.extendedAddress = (!_.isUndefined(ad.extendedAddress)) ? encode(ad.extendedAddress) + ';' : ';';
 
-    if (!_.isUndefined(obj.address.streetAddress)) {
-      console.log(obj.address.streetAddress);
-      if (_.isArray(obj.address.streetAddress)) {
-        console.log('I am here');
-        var streets = _.reduce(obj.address.streetAddress, function (res, val) {
-          console.log('res: ', res);
-          console.log('val: ', val);
-          res = res + '\n' + encode(val);
-          return res;
-        });
-        console.log('streets: ', streets);
-        addr.streetAddress = streets + ';';
+      if (!_.isUndefined(ad.streetAddress)) {
+        if (_.isArray(ad.streetAddress)) {
+          var streets = _.reduce(ad.streetAddress, function (res, val) {
+            console.log('res: ', res);
+            console.log('val: ', val);
+            res = res + '\n' + encode(val);
+            return res;
+          });
+          console.log('streets: ', streets);
+          addr.streetAddress = streets + ';';
+        } else {
+          addr.streetAddress = encode(ad.streetAddress) + ';';
+        }
       } else {
-        addr.streetAddress = encode(obj.address.streetAddress) + ';';
+        addr.streetAddress = ';';
       }
-    } else {
-      addr.streetAddress = ';';
-    }
 
-    addr.locality = (!_.isUndefined(obj.address.city)) ? encode(obj.address.city) + ';' : ';';
-    addr.region = (!_.isUndefined(obj.address.region)) ? encode(obj.address.region) + ';' : ';';
-    addr.postalCode = (!_.isUndefined(obj.address.postalCode)) ? obj.address.postalCode + ';' : ';';
-    addr.country = (!_.isUndefined(obj.address.country)) ? encode(obj.address.country) : ';';
+      addr.locality = (!_.isUndefined(ad.city)) ? encode(ad.city) + ';' : ';';
+      addr.region = (!_.isUndefined(ad.region)) ? encode(ad.region) + ';' : ';';
+      addr.postalCode = (!_.isUndefined(ad.postalCode)) ? ad.postalCode + ';' : ';';
+      addr.country = (!_.isUndefined(ad.country)) ? encode(ad.country) : ';';
 
-    return 'ADR;' + addr.type + addr.primary + addr.postOfficeBox + addr.extendedAddress + addr.streetAddress + addr.locality + addr.region + addr.postalCode + addr.country;
+      // accessing rank in order to build the correct next item* value.
+      nxt = num +rank + 1;
+      console.log('RANK: ', rank);
+
+      fp = 'item'+nxt+'.ADR;' + addr.type + addr.primary + addr.postOfficeBox + addr.extendedAddress + addr.streetAddress + addr.locality + addr.region + addr.postalCode + addr.country;
+      if (addr.country !== ';') {
+        countryCode = lookup.countries({name: encode(ad.country)})[0];
+        if (!_.isUndefined(countryCode)) {
+          countryCode = countryCode.alpha2.toLowerCase();
+          sp = 'item'+nxt+'.X-ABADR:'+countryCode;
+        }
+      } else {
+        sp = '';
+      }
+      return fp + '\n' + sp;
+    });
+    return address;
   }
 };

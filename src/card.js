@@ -12,12 +12,14 @@ function nwline() {
 
 module.exports = function (contact) {
   var card = '';
+  var itemCount = 0;
   card += 'BEGIN:VCARD' + nwline();
   card += 'VERSION:' + (contact.version || '3.0') + nwline();
 
 
   _.forOwn(filters, function (filter) {
-    var part = filter.visit(contact);
+    itemCount = ((card.match(/item/g) || []).length / 2);
+    var part = filter.visit(contact, itemCount);
     if (!_.isEmpty(part)) {
       if (_.isArray(part)) {
         part.map(function (item) {
