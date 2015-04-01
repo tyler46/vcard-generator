@@ -11,6 +11,7 @@ var contact = {
     name: 'Lakers',
     department: 'Basketball Team'
   },
+  url: {address: 'http://johnsmith.com', primary: true},
   title: 'Basketball Player',
   photo: 'http://www.example.com/dir_photos/my_photo.png',
   email: [
@@ -29,14 +30,21 @@ var contact = {
     {number: '2432 543', type: 'iphone'},
     {number: '24532 535', type: 'home'}
   ],
-  address: {
-    type: 'home',
-    primary: true,
-    streetAddress: ['1 Madison Square', '5th Ave'],
-    city: 'New York',
-    postalCode: 'WC2N',
-    country: 'U.S.A'
-  },
+  address: [{
+      type: 'home',
+      primary: true,
+      streetAddress: ['1 Madison Square', '5th Ave'],
+      city: 'New York',
+      postalCode: 'WC2N',
+      country: 'United States'
+    },
+    {
+      type: 'work',
+      streetAddress: ['25th LA Ave'],
+      city: 'Los Angeles',
+      postalCode: 'LC2A',
+      country: 'United States'
+  }],
   'social-profiles': [
     {
       service: 'twitter', address: 'http://twitter.com/johnsmith'

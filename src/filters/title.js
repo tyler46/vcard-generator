@@ -1,11 +1,5 @@
 var _ = require('lodash');
-
-function encode(val) {
-  if (val) {
-    return val.replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
-  }
-  return '';
-}
+var encode = require('../lib').encode;
 
 
 exports.visit = function (obj) {
