@@ -1,17 +1,10 @@
 var _ = require('lodash');
-
-function encode(val) {
-  if (val) {
-    return val.replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
-  }
-  return '';
-}
+var encode = require('../lib').encode;
 
 
 exports.visit = function (obj) {
   if (!_.isUndefined(obj.name)) {
     var asString;
-    var res = '';
     var no = {};
     no.family = obj.name.lastName || '';
     no.given = obj.name.firstName || '';

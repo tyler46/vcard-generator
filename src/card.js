@@ -3,11 +3,7 @@ var uuid = require('node-uuid');
 var _ = require('lodash');
 
 var filters = require('./filters');
-
-
-function nwline() {
-  return '\r\n';
-}
+var nwline = require('./lib').nwline;
 
 
 module.exports = function (contact) {
